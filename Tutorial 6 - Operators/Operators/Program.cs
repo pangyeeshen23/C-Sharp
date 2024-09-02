@@ -1,7 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 // Operators and Order of Evaluation
 int num1 = 14;
-int num2 = 13;
+Console.WriteLine("Please enter a whole number !");
+int num2 = int.Parse(Console.ReadLine());
 
 // Concatination
 Console.WriteLine("Age is " + num1);
