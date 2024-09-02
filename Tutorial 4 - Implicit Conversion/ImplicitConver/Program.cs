@@ -1,5 +1,10 @@
-﻿// implicit conversion
+﻿// implicited typed variable
+var myFavouriteGenre = "LitRPGs";
+var myFavouriteNumber = 13;
+var youtFavouriteNumber = 14;
+var ourNumbersCombined = myFavouriteNumber + youtFavouriteNumber;
 
+// implicit conversion
 int myInt = 13;
 double myDouble = myInt;
 long myLong = 132345098312389013;
