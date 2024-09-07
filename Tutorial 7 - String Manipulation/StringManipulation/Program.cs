@@ -15,3 +15,6 @@ Console.WriteLine(@"C:\Users\scolderidge\Document");
 
 //String Formating
 Console.WriteLine("The number is {0} and the price is {1}, and the name is {2}", num, price, name);
+
+string s1 = "this is a \"string\" with \na slash \\ / and a colon: ";
+Console.WriteLine(s1);
