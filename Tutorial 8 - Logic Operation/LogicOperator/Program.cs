@@ -3,6 +3,8 @@ Console.WriteLine("Hello, World!");
 
 int num1 = 0;
 int num2 = 0;
+int age = 0;
+string address = string.Empty;
 
 // relational operator  < <= > >=
 bool isGreater = num1 > num2;
@@ -14,12 +16,12 @@ if (num1 == int.Parse(Console.ReadLine()))
 {
     Console.WriteLine("Numbers are equal!");
     Console.WriteLine("Please enter your age");
-    int age = int.Parse(Console.ReadLine());
+    age = int.Parse(Console.ReadLine());
     if(age >= 18)
     {
         Console.WriteLine("Please enter your address, " +
             "so that we can send you the price!");
-        string address = Console.ReadLine();
+        address = Console.ReadLine();
     }
     else
     {
@@ -31,6 +33,7 @@ else
     Console.WriteLine("Number are not equal!");
 }
 
+age = 0;
 
 //int age = 22;
 //bool isWithParent = false;
