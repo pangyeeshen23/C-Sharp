@@ -49,6 +49,6 @@ else
 Console.WriteLine($"Quiz completed! your final score is {score}/3");
 if (score == 3) Console.WriteLine("Excellent! you got all the answers right !");
 else if (score > 0) Console.WriteLine("Good Job, but keep learning !");
-else Console.WriteLine("Try again and see if you can get some answer right next time !");
+else Console.WriteLine("Try again and see if you can get some answer right next time !a");
 
 Console.ReadLine();
