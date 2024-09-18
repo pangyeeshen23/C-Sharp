@@ -1,31 +1,36 @@
-﻿Game.Start();
+﻿new Game().Start();
 
-public static class Game
+Console.WriteLine("Game Over!");
+Console.WriteLine("Thank you for playing the game!");
+
+public class Game
 {
-    public static void Start()
+    private string charType = "";
+    public void Start()
     {
         Console.WriteLine("Welcome to the Adventure Game!");
         string charName = CharacterName();
-        string charType = CharacterType();
+        this.charType = CharacterType();
         Console.WriteLine($"You, {charName} the {charType} find yourself at the edge of a dark forest");
-        FirstChoice();
-        SecondChoice();
+        bool wait = FirstChoice();
+        if(!wait) SecondChoice();
     }
 
-    public static string CharacterName()
+    public string CharacterName()
     {
         Console.WriteLine("Enter your character's name");
         return Console.ReadLine();
     }
 
-    public static string CharacterType()
+    public string CharacterType()
     {
         Console.WriteLine("Choose your character type (Warrior, Wizard, Archer)");
         return Console.ReadLine();
 
     }
-    public static void FirstChoice()
+    public bool FirstChoice()
     {
+        bool wait = false;
         Console.WriteLine("Do you enter the forest or camp outside? (Enter/Camp)");
         string choice1 = Console.ReadLine();
         if (choice1.ToLower() == "enter")
@@ -34,11 +39,13 @@ public static class Game
         }
         else
         {
+            wait = true;
             Console.WriteLine("You decided to camp out and wait for daylight.");
         }
+        return wait;
     }
 
-    public static void SecondChoice()
+    public void SecondChoice()
     {
         bool gameContinues = true;
 
@@ -62,18 +69,18 @@ public static class Game
     }
 
 
-    public static bool Combat()
+    public bool Combat()
     {
         bool die = false;
         Random random = new Random();
         int luck = random.Next(1, 11);
-        if (luck > 5)
+        if (this.charType == "Wizard" && luck > 2)
         {
-            Console.WriteLine("You beat the wild beast!");
-            if (luck > 8)
-            {
-                Console.WriteLine("The wild beast dropped a teasure!");
-            }
+            Win(luck);
+        }
+        else if (luck > 5)
+        {
+            Win(luck);
         }
         else
         {
@@ -83,5 +90,13 @@ public static class Game
         }
         return die;
     }
-}
 
+    public void Win(int luck)
+    {
+        Console.WriteLine("You beat the wild beast!");
+        if (luck > 8)
+        {
+            Console.WriteLine("The wild beast dropped a teasure!");
+        }
+    }
+}
