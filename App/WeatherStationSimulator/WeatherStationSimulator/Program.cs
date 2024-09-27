@@ -10,6 +10,37 @@
             string[] weatherConditions = new string[days];
             weatherConditions = GenerateWeatherConditions(days);
             Console.WriteLine($"Average Temp is : {CalculateTempAverage()}");
+            Console.WriteLine($"Max Temp was : {_temperatures.Max()}");
+            Console.WriteLine($"Min Temp was : {GetMinTemperature()}");
+            Console.WriteLine($"Min Temp was : {_temperatures.Min()}");
+            Console.WriteLine($"Common Condition was :{FindMostCommonCondition(weatherConditions)}");
+        }
+
+        static string FindMostCommonCondition(string[] conditions)
+        {
+            int count = 0;
+            string mostCommon = "";
+            for (int i = 0; i < conditions.Length; i++)
+            {
+                int occurance = CountOccurance(conditions, conditions[i]);
+
+                if (count < occurance)
+                {
+                    mostCommon = conditions[i];
+                    count = occurance;
+                }
+            }
+            return mostCommon;
+        }
+
+        static int CountOccurance(string[] conditions, string currentCondition)
+        {
+            int tempCount = 0;
+            for (int j = 0; j < conditions.Length; j++)
+            {
+                if (currentCondition == conditions[j]) tempCount++;
+            }
+            return tempCount;
         }
 
         static string[] GenerateWeatherConditions(int days)
@@ -32,6 +63,16 @@
                 sum += _temperatures[i];
             }
             return sum / _temperatures.Length;
+        }
+
+        static int GetMinTemperature()
+        {
+            int min = _temperatures[0];
+            foreach (int temp in _temperatures) 
+            {
+                if (temp < min) min = temp;
+            }
+            return min;
         }
     }
 }
