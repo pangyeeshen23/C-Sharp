@@ -10,6 +10,7 @@
 
         // member variable / field
         // private keywords
+        // backing field of the Model property
         private string _model = "";
         private string _brand = "";
         private bool _isLuxury = false;
@@ -19,7 +20,7 @@
         public string Brand { 
             get
             {
-                if (_isLuxury)
+                if (IsLuxury)
                 {
                     return _brand + " - Luxury Edition";
                 }
@@ -34,7 +35,7 @@
                 _brand = value;
             }
         }
-        public bool IsLuxury { get => _isLuxury; set => _isLuxury = value; }
+        public bool IsLuxury { get; set; }
 
         // Constructor
         public Car(string model, string brand, bool isLuxury)
@@ -43,6 +44,12 @@
             Brand = brand;
             IsLuxury = isLuxury;
             Console.WriteLine($"A {_brand} of the model {_model} has been created");
+        }
+
+
+        public void Drive()
+        {
+            Console.WriteLine($"I'm a {Model} and I'm driving");
         }
 
     }
