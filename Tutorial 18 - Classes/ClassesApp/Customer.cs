@@ -36,7 +36,10 @@ namespace ClassesApp
             ContactNumber = contactNumber;
         }
 
-
+        public static void DoSomeCustomerStuff()
+        {
+            Console.WriteLine("I'm doing some customer stuff");
+        }
 
     }
 }

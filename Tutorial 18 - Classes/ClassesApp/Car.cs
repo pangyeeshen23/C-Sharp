@@ -15,6 +15,8 @@
         private string _brand = "";
         private bool _isLuxury = false;
 
+        public static int NumberOfCar = 0;
+
         // properties
         public string Model { get => _model; set => _model = value; }
         public string Brand { 
@@ -40,10 +42,16 @@
         // Constructor
         public Car(string model, string brand, bool isLuxury)
         {
+            NumberOfCar++;
             Model = model;
             Brand = brand;
             IsLuxury = isLuxury;
             Console.WriteLine($"A {_brand} of the model {_model} has been created");
+        }
+
+        public Car()
+        {
+            NumberOfCar++;
         }
 
 

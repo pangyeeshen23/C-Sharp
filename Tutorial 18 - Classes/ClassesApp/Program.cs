@@ -10,6 +10,10 @@
             Car myBmw = new Car("i7", "BMW", true);
             myBmw.Drive();
 
+            // accessing the public static variable NumberOfCars
+            Console.WriteLine("Number of cars produced: " + Car.NumberOfCar);
+       
+
             Customer earl = new Customer("Earl");
             Customer frank = new Customer("FrankTheTank", "Mainstreet", "555121311");
 
@@ -24,8 +28,17 @@
             Customer customer1 = new Customer("Frank");
             Console.WriteLine("Contact Number of Frank is : " + customer1.ContactNumber);
 
+
+            //Static Method
+            Customer.DoSomeCustomerStuff();
+            MyMethod();
             Console.WriteLine();
             Console.ReadKey();
+        }
+
+        static void MyMethod()
+        {
+            Console.WriteLine("My Method");
         }
     }
 }
