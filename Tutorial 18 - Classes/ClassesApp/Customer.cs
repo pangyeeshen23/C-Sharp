@@ -21,16 +21,19 @@ namespace ClassesApp
         }
 
         // Custom Constructor
-        public Customer(string name, string address, string contactNumber)
+        public Customer(string name, string address = "NA", string contactNumber ="NA") 
         {
             Name = name;
             Address = address;
             ContactNumber = contactNumber;
         }
 
-        public Customer(string name) 
+        // Default/Optional Parameter Contact Number
+        public void SetDetails(string name, string address, string contactNumber = "NA")
         {
             Name = name;
+            Address = address;
+            ContactNumber = contactNumber;
         }
 
 
