@@ -28,12 +28,24 @@
             Customer customer1 = new Customer("Frank");
             Console.WriteLine("Contact Number of Frank is : " + customer1.ContactNumber);
 
+            Customer customer2 = new Customer("John Doe");
+            customer1.Get();
+            customer2.Get();
+
+            Customer customer3 = new Customer();
+            customer3.Password = "120983qqewqiaisa";
+            Console.WriteLine("Customer 3 id is " + customer3.Id);
+            customer3.Get();
 
             //Static Method
             Customer.DoSomeCustomerStuff();
             MyMethod();
             Console.WriteLine();
-            Console.ReadKey();
+
+            Rectangle rectangle1 = new Rectangle("Red");
+            Rectangle rectangle2 = new Rectangle("Blue");
+            rectangle1.DisplayDetails();
+            rectangle2.DisplayDetails();
         }
 
         static void MyMethod()
