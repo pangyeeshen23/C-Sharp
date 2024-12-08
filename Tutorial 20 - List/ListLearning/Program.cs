@@ -39,13 +39,19 @@
                 Console.WriteLine(number);
             }
 
-            List<int> numGreaterThanTen = numbers.FindAll(x => x >= 10);
+            //Predicate<int> isGreaterThanTen = x => x > 10;
+            List<int> numGreaterThanTen = numbers.FindAll(IsGreaterThanTen);
             Console.WriteLine("All number 10 and higher in out list numbers");
             foreach (int number in numGreaterThanTen)
             {
                 Console.WriteLine(number);
             }
 
+        }
+
+        public static bool IsGreaterThanTen(int x)
+        {
+            return x > 10;
         }
     }
 }
