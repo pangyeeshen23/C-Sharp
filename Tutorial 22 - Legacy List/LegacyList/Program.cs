@@ -26,23 +26,25 @@ namespace LegacyList
 
             Console.WriteLine(count);
             double sum = 0;
-            foreach (object obj in arrayList)
-            {
-                if (obj is int)
-                {
-                    sum += Convert.ToDouble(obj);
-                }
-                else if (obj is double)
-                {
-                    sum += (double) obj;
-                }
-                else if (obj is string)
-                {
-                    Console.WriteLine(obj);
-                }
-            }
+            //foreach (object obj in arrayList)
+            //{
+            //    if (obj is int)
+            //    {
+            //        sum += Convert.ToDouble(obj);
+            //    }
+            //    else if (obj is double)
+            //    {
+            //        sum += (double) obj;
+            //    }
+            //    else if (obj is string)
+            //    {
+            //        Console.WriteLine(obj);
+            //    }
+            //}
 
-            Console.WriteLine(sum);
+            //Console.WriteLine(sum);
+
+            HashTables.Demo();
         }
     }
 }
