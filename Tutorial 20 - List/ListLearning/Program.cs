@@ -26,27 +26,36 @@
             //}
 
             List<int> numbers = new List<int>() { 10, 5, 15, 3, 9, 19, 25 };
-            Console.WriteLine("Unsorted List");
-            foreach (int number in numbers)
-            {
-                Console.WriteLine(number);
-            }
+            //Console.WriteLine("Unsorted List");
+            //foreach (int number in numbers)
+            //{
+            //    Console.WriteLine(number);
+            //}
 
-            numbers.Sort();
-            Console.WriteLine("Sorted List");
-            foreach (int number in numbers)
-            {
-                Console.WriteLine(number);
-            }
+            //numbers.Sort();
+            //Console.WriteLine("Sorted List");
+            //foreach (int number in numbers)
+            //{
+            //    Console.WriteLine(number);
+            //}
 
-            //Predicate<int> isGreaterThanTen = x => x > 10;
-            List<int> numGreaterThanTen = numbers.FindAll(IsGreaterThanTen);
-            Console.WriteLine("All number 10 and higher in out list numbers");
-            foreach (int number in numGreaterThanTen)
-            {
-                Console.WriteLine(number);
-            }
+            ////Predicate<int> isGreaterThanTen = x => x > 10;
+            //List<int> numGreaterThanTen = numbers.FindAll(IsGreaterThanTen);
+            //Console.WriteLine("All number 10 and higher in out list numbers");
+            //foreach (int number in numGreaterThanTen)
+            //{
+            //    Console.WriteLine(number);
+            //}
 
+            bool hasLargeNumber = numbers.Any(x => x > 30);
+            if (hasLargeNumber)
+            {
+                Console.WriteLine("There are large numbers in the number");
+            }
+            else
+            {
+                Console.WriteLine("No large numbers in the list");
+            }
         }
 
         public static bool IsGreaterThanTen(int x)
