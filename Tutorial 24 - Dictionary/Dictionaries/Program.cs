@@ -6,10 +6,7 @@
         {
             // key - value
             // declaring and initializing a Dictionary
-            Dictionary<int, Employee> employees = new Dictionary<int, Employee>()
-            {
-                { 2, new Employee("Honk", 25, 1000) }
-            };
+            Dictionary<int, Employee> employees = new Dictionary<int, Employee>();
 
             employees.Add(1, new Employee("John Does", 35, 100000));
             employees.Add(2, new Employee("John Doesnt", 25, 200000));
@@ -22,6 +19,23 @@
                     $" Id : {employee.Key}, name : {employee.Value.Name} " + 
                     $"earns {employee.Value.Salary}" + 
                     $" and is {employee.Value.Age} years old !");
+            }
+
+            Dictionary<string, string> codes = new Dictionary<string, string>()
+            {
+                ["NY"] = "New York",
+                ["CA"] = "California",
+                ["TX"] = "Texas"
+            };
+
+            if(codes.TryGetValue("NY", out string state))
+            {
+                Console.WriteLine(state);
+            }
+
+            foreach(var item in codes)
+            {
+                Console.WriteLine($"The state code is {item.Key} and the state name is {item.Value}");
             }
         }
 
