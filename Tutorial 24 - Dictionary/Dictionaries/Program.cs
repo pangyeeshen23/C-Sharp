@@ -6,29 +6,38 @@
         {
             // key - value
             // declaring and initializing a Dictionary
-            Dictionary<int, string> employees = new Dictionary<int, string>();
-
-            // Adding Items to a Dictionary
-            employees.Add(101, "John Doe");
-            employees.Add(102, "Bob Smith");
-            employees.Add(103, "Rob Smith");
-            employees.Add(104, "Flob Smith");
-            employees.Add(105, "Dob Smith");
-
-            string name = employees[101];
-            Console.WriteLine(name);
-
-            // access item in a dictionary
-            employees[102] = "Jane Smith";
-
-            // remove an item form a dictionary
-            employees.Remove(101);
-
-            foreach(KeyValuePair<int, string> employee in employees)
+            Dictionary<int, Employee> employees = new Dictionary<int, Employee>()
             {
-                Console.WriteLine($"Id: {employee.Key}, Name: {employee.Value}");
+                { 2, new Employee("Honk", 25, 1000) }
+            };
+
+            employees.Add(1, new Employee("John Does", 35, 100000));
+            employees.Add(2, new Employee("John Doesnt", 25, 200000));
+            employees.Add(3, new Employee("John Wasnt", 45, 80000));
+            employees.Add(4, new Employee("John Will", 15, 50000));
+
+            foreach (var employee in employees)
+            {
+                Console.WriteLine(
+                    $" Id : {employee.Key}, name : {employee.Value.Name} " + 
+                    $"earns {employee.Value.Salary}" + 
+                    $" and is {employee.Value.Age} years old !");
+            }
+        }
+
+        public class Employee
+        {
+            public Employee(string name, int age, int salary)
+            {
+
+                this.Name = name;
+                this.Age = age;
+                this.Salary = salary;
             }
 
+            public string Name { get; set; }
+            public int Age { get; set; }
+            public int Salary { get; set; }
         }
     }
 }
