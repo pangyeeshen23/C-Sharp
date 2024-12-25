@@ -1,4 +1,6 @@
-﻿namespace TryAndCatch
+﻿using System.Diagnostics;
+
+namespace TryAndCatch
 {
     internal class Program
     {
@@ -7,18 +9,23 @@
             Console.WriteLine("Hello, World!");
             int result = 0;
 
+            Debug.WriteLine("Main method is runing");
 
             try
             {
-                Console.WriteLine("Please enter a number");
-                int num1 = int.Parse(Console.ReadLine());
-                int num2 = 2;
-                result = num2 / num1;
+                //Console.WriteLine("Please enter a number");
+                //int num1 = int.Parse(Console.ReadLine());
+                //int num2 = 2;
+                //result = num2 / num1;
+
+                Console.WriteLine("Please enter your age");
+                GetUserAge(Console.ReadLine());
             }
             catch (Exception ex)
             {
                 ex.ToString();
                 Console.WriteLine("Error: "+ ex.Message);
+                Debug.WriteLine(ex.ToString());
             }
             finally
             {
@@ -29,5 +36,20 @@
 
             Console.WriteLine("Result: " + result);
         }
+
+        static int GetUserAge(string input)
+        {
+            int age;
+            if (!int.TryParse(input, out age))
+            {
+                throw new Exception("You didn't enter a valid age.");
+            }
+            if(age < 0 || age > 120)
+            {
+                throw new Exception("Your age must be between 0 and 120.");
+            }
+            return age;
+        }
     }
+
 }
