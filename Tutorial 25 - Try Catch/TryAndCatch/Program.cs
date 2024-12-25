@@ -13,17 +13,31 @@ namespace TryAndCatch
 
             try
             {
-                //Console.WriteLine("Please enter a number");
-                //int num1 = int.Parse(Console.ReadLine());
-                //int num2 = 2;
-                //result = num2 / num1;
+                Console.WriteLine("Please enter a number");
+                int num1 = int.Parse(Console.ReadLine());
+                int num2 = 2;
+                result = num2 / num1;
 
-                Console.WriteLine("Please enter your age");
-                GetUserAge(Console.ReadLine());
+                //Console.WriteLine("Please enter your age");
+                //GetUserAge(Console.ReadLine());
+            }
+            catch(DivideByZeroException ex)
+            {
+                Console.WriteLine("Don't Divide By Zero !! " + ex.Message);
+                result = 10;
+                Debug.WriteLine(ex.ToString());
+            }
+            catch(FormatException ex)
+            {
+                Console.WriteLine("I TOLD YOU ENTER A NUMBER !! " + ex.Message);
+                Debug.WriteLine(ex.ToString());
+            }
+            catch(OverflowException ex)
+            {
+                Console.WriteLine("Number to high");
             }
             catch (Exception ex)
             {
-                ex.ToString();
                 Console.WriteLine("Error: "+ ex.Message);
                 Debug.WriteLine(ex.ToString());
             }
