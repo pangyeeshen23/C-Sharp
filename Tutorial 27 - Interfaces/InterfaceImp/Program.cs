@@ -41,6 +41,10 @@
             Dog dog = new Dog();
             dog.MakeSound();
             dog.Eat("Treat");
+
+            Cat cat = new Cat();
+            cat.MakeSound();
+            cat.Eat("Fish");
         }
     }
 }

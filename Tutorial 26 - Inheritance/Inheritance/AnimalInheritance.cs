@@ -19,6 +19,10 @@ namespace Inheritance
             Cat myCat = new Cat();
             myCat.MakeSound();
 
+            Animal dog = new Dog();
+            dog.MakeSound();
+            Console.WriteLine(myDog);
+
         }
 
         // Base Class (Parent Class or Superclass)
