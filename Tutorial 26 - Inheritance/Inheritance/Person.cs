@@ -25,6 +25,17 @@ namespace Inheritance
         {
             Console.WriteLine($"Name : {this.Name}, Age : {this.Age}");
         }
+
+        /// <summary>
+        /// Make our object older.
+        /// </summary>
+        /// <param name="years">The parameter that hold the amount of year the object should age</param>
+        /// <returns>Returns the new age, after aging</returns>
+        public int BecomeOlder(int years)
+        {
+            Age += years;
+            return Age;
+        }
     }
 
     public class Employee : Person

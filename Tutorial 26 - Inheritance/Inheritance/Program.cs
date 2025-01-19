@@ -1,20 +1,43 @@
-﻿namespace Inheritance
+﻿using System;
+
+namespace Coding.Exercise
 {
-    internal class Program
+    public class Exercise
     {
-        static void Main(string[] args)
+        public void DemonstrateOverriding()
         {
-            //AnimalInheritance animalInheritance = new AnimalInheritance();
-            //animalInheritance.Run();
-            //AccessModifiers accessModifiers = new AccessModifiers();
-            //accessModifiers.Run();
+            Animal animal = new Animal();
+            animal.MakeSound();
 
-            Employee joe = new Employee("Joe", 36, "Taman Deno", "Software Developer", 101);
-            joe.DisplayEmployeeInfo();
+            Dog dog = new Dog();
+            dog.MakeSound();
 
-            Manager carl = new Manager("Carl", 45, "Taman Heno", "Manager", 123123, 7);
-            carl.DisplayManagerInfo();
+            Cat cat = new Cat();
+            cat.MakeSound();
         }
     }
 
+    public class Animal
+    {
+        public virtual void MakeSound()
+        {
+            Console.WriteLine("Animal makes a sound");
+        }
+    }
+
+    public class Dog : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Dog barks");
+        }
+    }
+
+    public class Cat : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Cat meows");
+        }
+    }
 }
