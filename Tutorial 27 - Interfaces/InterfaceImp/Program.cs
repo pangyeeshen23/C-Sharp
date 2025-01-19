@@ -38,13 +38,20 @@
         {
             Console.WriteLine("Hello, World!");
 
-            Dog dog = new Dog();
-            dog.MakeSound();
-            dog.Eat("Treat");
+            //Dog dog = new Dog();
+            //dog.MakeSound();
+            //dog.Eat("Treat");
 
-            Cat cat = new Cat();
-            cat.MakeSound();
-            cat.Eat("Fish");
+            //Cat cat = new Cat();
+            //cat.MakeSound();
+            //cat.Eat("Fish");
+            IPaymentProcessor creditCardProcessor = new CreditCardProcessor();
+            PaymentPorcesser processor = new PaymentPorcesser(creditCardProcessor);
+            processor.ProcessOrderPayment(1000);
+
+            IPaymentProcessor paypalP= new PaypalProcessor();
+            PaymentPorcesser paypalProcessor = new PaymentPorcesser(paypalP);
+            paypalProcessor.ProcessOrderPayment(1000);
         }
     }
 }
