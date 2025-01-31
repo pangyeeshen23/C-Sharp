@@ -76,10 +76,13 @@
             //builder.Saw = new Saw(); // Inject dependencies via Setters
 
 
-            Builder builder = new Builder();
-            builder.SetHammer(new Hammer());
-            builder.SetSaw(new Saw());
-            builder.BuildHouse();
+            //Builder builder = new Builder();
+            //builder.SetHammer(new Hammer());
+            //builder.SetSaw(new Saw());
+            //builder.BuildHouse();
+
+            MultiInheritance multi = new MultiInheritance();
+            multi.Process();
             Console.WriteLine("Hello, World!");
         }
     }
