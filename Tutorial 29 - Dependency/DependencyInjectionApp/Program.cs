@@ -45,7 +45,7 @@
         public void BuildHouse()
         {
             Hammer hammer = (Hammer != null) ? Hammer : _hammer;
-            Saw saw = (Saw != null) ? Saw : _saw; ;
+            Saw saw = (Saw != null) ? Saw : _saw;
             _hammer.Use();
             _saw.Use();
             Console.WriteLine("House build");
