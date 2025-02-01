@@ -18,6 +18,10 @@
             Console.WriteLine("The square root of 25 is {0}", Math.Sqrt(25));
             Console.WriteLine("Always positive is {0}", Math.Abs(-25));
             Console.WriteLine("Cos of 1 is: {0}", Math.Cos(1));
+
+            Exercise exercise = new Exercise();
+            exercise.TestEvents();
         }
+
     }
 }
