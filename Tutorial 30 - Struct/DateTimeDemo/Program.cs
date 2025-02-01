@@ -34,13 +34,30 @@
             // Display the time in this structure 
             Console.WriteLine("{0} o'clock {1} minutes and {2} seconds", now.Hour, now.Minute, now.Second);
 
-            Console.WriteLine("Write a date in this format: yyyy-mm-dd");
+            //Console.WriteLine("Write a date in this format: yyyy-mm-dd");
+            //string input = Console.ReadLine();
+            //if(DateTime.TryParse(input, out DateTime dateTime))
+            //{
+            //    Console.WriteLine(dateTime);
+            //    TimeSpan daysPassed = now.Subtract(dateTime);
+            //    Console.WriteLine("Days passed since : {0}", daysPassed.Days);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Wrong input");
+            //}
+
+            Console.WriteLine("Please enter your birthday in this format: yyyy-mm-dd");
             string input = Console.ReadLine();
-            if(DateTime.TryParse(input, out DateTime dateTime))
+            if (DateTime.TryParse(input, out dt))
             {
-                Console.WriteLine(dateTime);
-                TimeSpan daysPassed = now.Subtract(dateTime);
+                Console.WriteLine(dt);
+                TimeSpan daysPassed = now.Subtract(dt);
                 Console.WriteLine("Days passed since : {0}", daysPassed.Days);
+            }
+            else
+            {
+                Console.WriteLine("Wrong Input");
             }
         }
 
