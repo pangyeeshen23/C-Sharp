@@ -16,7 +16,9 @@ namespace DelegatesDemo
             {
                 new Person{ Name = "Alice", Age = 30 },
                 new Person{ Name = "Bob", Age = 25 },
-                new Person{ Name = "Charlie", Age = 35 }
+                new Person{ Name = "Denis", Age = 36 },
+                new Person{ Name = "Charlie", Age = 35 },
+                new Person{ Name = "Jamie", Age = 25 }
             };
 
             PersonSorter sorter = new PersonSorter();
@@ -53,9 +55,9 @@ namespace DelegatesDemo
         {
             for(int i = 0; i < people.Length - 1; i++)
             {
+                bool isSwapped = false;
                 for (int j = i + 1; j < people.Length; j++)
                 {
-                    bool isSwapped = false;
                     if (comparison(people[i], people[j]) > 0)
                     {
                         Person temp = people[i];
@@ -63,8 +65,8 @@ namespace DelegatesDemo
                         people[j] = temp;
                         isSwapped = true;
                     }
-                    if (isSwapped == false) break;
                 }
+                if (isSwapped == false) break;
             }
         }
     }
