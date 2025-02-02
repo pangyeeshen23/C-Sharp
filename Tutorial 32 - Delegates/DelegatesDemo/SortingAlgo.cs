@@ -27,11 +27,22 @@ namespace DelegatesDemo
             {
                 Console.WriteLine("Person Name :" + person.Name + " Age : " + person.Age);
             }
+
+            sorter.Sort(people, CompareByName);
+            foreach (Person person in people)
+            {
+                Console.WriteLine("Person Name :" + person.Name + " Age : " + person.Age);
+            }
         }
 
         static int CompareByAge(Person person1, Person person2)
         {
             return person1.Age.CompareTo(person2.Age);
+        }
+
+        static int CompareByName(Person person1, Person person2)
+        {
+            return person1.Name.CompareTo(person2.Name);
         }
 
         public static void PrintArray<T>(T[] array)
