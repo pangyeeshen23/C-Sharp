@@ -23,11 +23,18 @@
     {
         static void Main(string[] args)
         {
-            EventPublisher publisher = new EventPublisher();
-            EventSubscriber subscriber = new EventSubscriber();
-            publisher.OnNotify += subscriber.OnEventRaised;
-            publisher.OnNotify += subscriber.OnEventRaised;
-            publisher.RaiseEvent("test");
+            //EventPublisher publisher = new EventPublisher();
+            //EventSubscriber subscriber = new EventSubscriber();
+            //publisher.OnNotify += subscriber.OnEventRaised;
+            //publisher.OnNotify += subscriber.OnEventRaised;
+            //publisher.RaiseEvent("test");
+
+            TemperatureMonitor monitor = new TemperatureMonitor();
+            TemperatureAlert alert = new TemperatureAlert();
+            monitor.OnTemperatureChanged += alert.OnTemperatureChanged;
+            monitor.Temperature = 20;
+            Console.WriteLine("Please enter the temperature");
+            monitor.Temperature = int.Parse(Console.ReadLine());
             Console.WriteLine("Hello, World!");
         }
     }
