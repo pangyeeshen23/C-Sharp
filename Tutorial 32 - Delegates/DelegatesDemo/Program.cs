@@ -18,23 +18,63 @@
 
             LoggerDemo logger = new LoggerDemo();
             LogHandler logHandler = logger.LogToConsole;
+            //logHandler += logger.LogToFile;
             logHandler("Logging to Console");
 
-            logHandler = logger.LogToFile;
-            logHandler("Logging to File");
+            foreach(LogHandler handler in logHandler.GetInvocationList())
+            {
+                try
+                {
+                    handler("Event occured with error handling");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception caught: " + ex.Message);
+                }
+            }
 
-            int[] intArray = { 1, 2, 3, 4, 5 };
-            SortingAlgo.PrintArray(intArray);
-            string[] strings = { "One", "Two", "Three", "Four" };
-            SortingAlgo.PrintArray(strings);
+            if (IsMethodInDelegate(logHandler, logger.LogToFile))
+            {
+                logHandler -= logger.LogToFile;
+            }
+            else
+            {
+                Console.WriteLine("Log to File Function Not Found");
+            }
+            //logHandler("After removing log to file");
 
-            SortingAlgo algo = new SortingAlgo();
-            algo.Process();
+            InvokeSafely(logHandler, "Logging to Console");
+            //logHandler = logger.LogToFile;
+            //logHandler("Logging to File");
+
+            //int[] intArray = { 1, 2, 3, 4, 5 };
+            //SortingAlgo.PrintArray(intArray);
+            //string[] strings = { "One", "Two", "Three", "Four" };
+            //SortingAlgo.PrintArray(strings);
+
+            //SortingAlgo algo = new SortingAlgo();
+            //algo.Process();
         }
 
         static void ShowMessage(string message)
         {
             Console.WriteLine(message);
+        }
+
+        static void InvokeSafely(LogHandler logHandler, string message)
+        {
+            LogHandler tempLogHandler = logHandler;
+            if (tempLogHandler != null) tempLogHandler(message);
+        }
+
+        static bool IsMethodInDelegate(LogHandler logHandler, LogHandler method)
+        {
+            if(logHandler == null) return false;
+            foreach(var d in logHandler.GetInvocationList())
+            {
+                if(d == (Delegate)method) return true;
+            }
+            return false;
         }
     }
 }
