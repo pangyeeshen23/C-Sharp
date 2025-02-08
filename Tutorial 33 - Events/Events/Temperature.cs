@@ -53,7 +53,15 @@ namespace Events
     {
         public void OnTemperatureChanged(object sender, TemperatureChangedEventArgs eventArgs)
         {
-            Console.WriteLine($"Alert : temperature is {eventArgs.Temperature} sender is : {sender}");
+            Console.WriteLine($"Alert : temperature is {eventArgs.Temperature}, Sender is : {sender}");
+        }
+    }
+
+    public class TemperatureCoolingAlert
+    {
+        public void OnTemperatureChanged(object sender, TemperatureChangedEventArgs eventArgs)
+        {
+            Console.WriteLine($"Cool Alert : temperature is {eventArgs.Temperature}, Sender is : {sender}");
         }
     }
 }

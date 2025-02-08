@@ -31,7 +31,9 @@
 
             TemperatureMonitor monitor = new TemperatureMonitor();
             TemperatureAlert alert = new TemperatureAlert();
+            TemperatureCoolingAlert coolingAlert = new TemperatureCoolingAlert();
             monitor.OnTemperatureChanged += alert.OnTemperatureChanged;
+            monitor.OnTemperatureChanged += coolingAlert.OnTemperatureChanged;
             monitor.Temperature = 20;
             Console.WriteLine("Please enter the temperature");
             monitor.Temperature = int.Parse(Console.ReadLine());
