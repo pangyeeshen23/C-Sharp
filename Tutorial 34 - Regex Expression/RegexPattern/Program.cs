@@ -6,10 +6,10 @@ namespace RegexPattern
     {
         static void Main(string[] args)
         {
-            string pattern = @"there";
+            string pattern = @"[a-zA-Z1-9]\S+@[a-zA-Z1-9]+\.[a-zA-Z1-9]+";
             Regex regex = new Regex(pattern);
 
-            string text = "Hi there, my number is 12314";
+            string text = "Contact us at support@example.com or sales@example.org.";
 
             MatchCollection matchCollection = regex.Matches(text);
 

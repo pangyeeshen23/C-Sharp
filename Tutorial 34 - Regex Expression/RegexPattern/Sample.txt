@@ -27,7 +27,12 @@ https://tutorials.eu
 http://www.tutorials.eu
 http://tutorials.eu
 
-test@test.com
+.1321q.te-st..@test.com
 
 MetaCharacters (Nedd to be escaped):
 .[{()\^$|?*+
+
+support.@example.com
+sales@example.org
+
+Contact us at support@example.com or sales@example.org.
