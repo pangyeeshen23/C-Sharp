@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Demo"
         mc:Ignorable="d"
         Title="Challenge" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="myGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="*"/>
@@ -24,8 +24,7 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
         <Label Content="Title of App" Grid.Column="2" Grid.Row="1"/>
-        <Label Content="Sample Text" Grid.Column="2" Grid.Row="2" />
-        <Button Content="A" Grid.Column="2" Grid.Row="3" />
-        <Button Content="B" Grid.Column="4" Grid.Row="3" />
+        <Label Content="Sample Text Sample Text Sample Text Sample Text Sample Text" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="2" />
+        <Button Content="A" Grid.Column="2" Grid.Row="3" Click="Button_Click" />
     </Grid>
 </Window>
