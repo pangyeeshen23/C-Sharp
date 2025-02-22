@@ -19,7 +19,7 @@ namespace ControlsApp
         public MainWindow()
         {
             InitializeComponent();
-            MainContent.Content = this;
+            MainContent.Content = new LoginView();
         }
     }
 }
