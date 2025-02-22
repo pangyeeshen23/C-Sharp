@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBindingApp.Data
 {
-    internal class Person
+    public class Person
     {
         public string Name { get; set; }
         public int Age { get; set; }
