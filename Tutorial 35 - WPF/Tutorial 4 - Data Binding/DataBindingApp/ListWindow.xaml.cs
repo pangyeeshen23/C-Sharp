@@ -24,6 +24,11 @@ namespace DataBindingApp
             {
                 Name = "Jonny",
                 Age = 35
+            },
+            new Person()
+            {
+                Name = "Lucas",
+                Age = 45
             }
         };
 
