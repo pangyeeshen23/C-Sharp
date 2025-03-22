@@ -93,7 +93,36 @@ namespace AnimalManager
 
         private void zooList_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if(zooList.SelectedValue != null) showAssociatedAnimals();
+            if (zooList.SelectedValue != null)
+            {
+                showAssociatedAnimals();
+                showZooInTextBox();
+            }
+        }
+
+        private void showZooInTextBox()
+        {
+            try
+            {
+                if (zooList.SelectedValue == null) return;
+                string query = "Select TOP 1 * FROM Zoo WHERE Id = @ZooId";
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@ZooId", zooList.SelectedValue.ToString());
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.Read())
+                {
+                    nameTextBox.Text = reader["Location"].ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
         }
 
         private void addAnimalToZooButton_OnClick(object sender, RoutedEventArgs e)
