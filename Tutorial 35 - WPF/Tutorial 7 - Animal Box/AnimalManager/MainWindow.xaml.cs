@@ -169,7 +169,7 @@ namespace AnimalManager
         private void addAnimalButton_OnClick(object sender, RoutedEventArgs e)
         {
             try
-            
+            {
                 if (!ValidateNameTextInput()) return;
                 string query = "Insert into Animal Values (@Name)";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
