@@ -33,5 +33,16 @@ namespace AnimalManager.Properties {
                 return ((string)(this["animalsConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THE-TRD-PC\\SQLEXPRESS;Initial Catalog=animal;Integrated Security=True" +
+            ";TrustServerCertificate=True")]
+        public string animalConnectionString {
+            get {
+                return ((string)(this["animalConnectionString"]));
+            }
+        }
     }
 }

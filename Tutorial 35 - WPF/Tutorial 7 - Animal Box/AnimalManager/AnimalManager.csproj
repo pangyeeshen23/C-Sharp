@@ -60,10 +60,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="animalsDataSet.Designer.cs">
+    <Compile Include="animalDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>animalsDataSet.xsd</DependentUpon>
+      <DependentUpon>animalDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -92,16 +92,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="animalsDataSet.xsc">
-      <DependentUpon>animalsDataSet.xsd</DependentUpon>
+    <None Include="animalDataSet.xsc">
+      <DependentUpon>animalDataSet.xsd</DependentUpon>
     </None>
-    <None Include="animalsDataSet.xsd">
+    <None Include="animalDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>animalsDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>animalDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="animalsDataSet.xss">
-      <DependentUpon>animalsDataSet.xsd</DependentUpon>
+    <None Include="animalDataSet.xss">
+      <DependentUpon>animalDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
