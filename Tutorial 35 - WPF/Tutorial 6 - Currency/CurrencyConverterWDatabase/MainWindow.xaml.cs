@@ -20,8 +20,6 @@ namespace CurrencyConverter
         private SqlDataAdapter da = new SqlDataAdapter();
 
         private int currencyId = 0;
-        private double fromAmount = 0;
-        private double toAmount = 0;
 
         public MainWindow()
         {
