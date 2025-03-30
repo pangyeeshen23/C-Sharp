@@ -123,11 +123,11 @@
                  </StackPanel>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"
                             VerticalAlignment="Bottom" Height="60" Width="800">
-                    <TextBox Name="txtAmout" Width="200" Height="30" Margin="175 0 0 0" VerticalAlignment="Top" Foreground="White" FontSize="20"></TextBox>
-                    <TextBox Name="txtCurrencyName" Width="200" Height="30" Margin="55 0 0 0" VerticalAlignment="Top" Foreground="White" FontSize="20"></TextBox>
+                    <TextBox Name="txtAmount" Width="200" Height="30" Margin="175 0 0 0" VerticalAlignment="Top" FontSize="20"></TextBox>
+                    <TextBox Name="txtCurrencyName" Width="200" Height="30" Margin="55 0 0 0" VerticalAlignment="Top" FontSize="20"></TextBox>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Height="100" Width="1000" Orientation="Horizontal">
-                    <Button Name="SaveBtn" Height="40" Width="150" Content="Save" Click="onSaveBtnClick"  Margin="325 0 20 0"
+                    <Button Name="btnSave" Height="40" Width="150" Content="Save" Click="onSaveBtnClick"  Margin="325 0 20 0"
                             Foreground="White" FontSize="20" Style="{StaticResource ButtonRound}">
                         <Button.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
@@ -148,25 +148,31 @@
                 </StackPanel>
                 <StackPanel Height="200" Width="800" Grid.Row="3" Margin="100,0" VerticalAlignment="Top">
                     <DataGrid Name="dgvCurrency" AutoGenerateColumns="False" Height="180" Margin="10" Width="480" Background="Transparent"
-                              CanUserAddRows="False" SelectedCellsChanged="dgvCurrency_SelectedCellsChanged">
+                              CanUserAddRows="False" SelectedCellsChanged="dgvCurrencySelectedCellsChanged" SelectionUnit="Cell"
+                              VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
-                            <DataGridTextColumn x:Name="Id" Header="Id" Width="100" CanUserResize="False" Visibility="Hidden" Binding="{Binding Path=Id}" />
+                            <DataGridTextColumn x:Name="Id" Header="Id" Width="100" CanUserResize="False"
+                                                Visibility="Hidden" Binding="{Binding Path=Id}" />
                             <DataGridTemplateColumn Header="" Width="70" IsReadOnly="True" DisplayIndex="0">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="/Images/delete.png" ToolTip="Delete" Width="50"></Image>
+                                        <Image Source="/Images/edit.png" ToolTip="Edit" Width="20" 
+                                               Height="20" x:Name="Revise"></Image>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="" Width="70" IsReadOnly="True">
+                            <DataGridTemplateColumn Header="" Width="70" IsReadOnly="True" DisplayIndex="1">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="/Images/edit.png" ToolTip="Edit" Width="50"></Image>
+                                        <Image Source="/Images/delete.png" ToolTip="Delete" Width="20"
+                                               Height="20" x:Name="Delete"></Image>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn x:Name="Amount" Header="Amount" Width="80" CanUserResize="False" Binding="{Binding Path=Amount}"/>
-                            <DataGridTextColumn x:Name="CurrencyName" Header="Currency Name" Width="300" CanUserResize="False" Binding="{Binding Path=CurrencyName}"/>
+                            <DataGridTextColumn x:Name="Amount" Header="Amount" Width="100" CanUserResize="False" CanUserReorder="False"
+                                                Binding="{Binding Path=Amount}" IsReadOnly="True"/>
+                            <DataGridTextColumn x:Name="CurrencyName" Header="Currency Name" Width="*" MinWidth="20" CanUserResize="False" CanUserReorder="False"
+                                                Binding="{Binding Path=CurrencyName}" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
