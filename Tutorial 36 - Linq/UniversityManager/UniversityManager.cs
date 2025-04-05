@@ -82,5 +82,22 @@ namespace UniversityManager
                 student.Print();
             }
         }
+
+        public void StudentAndUniversityNameCollection()
+        {
+            var newCollection = from student in _students
+                                join university in _universities on student.UniversityId equals university.Id
+                                orderby student.Name
+                                select new
+                                {
+                                    StudentName = student.Name,
+                                    UniversityName = university.Name
+                                };
+            Console.WriteLine("Student and University Name Collection:");
+            foreach (var item in newCollection)
+            {
+                Console.WriteLine("Student Name: {0}, University Name: {1}", item.StudentName, item.UniversityName);
+            }
+        }
     }
 }
