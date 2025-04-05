@@ -46,5 +46,41 @@ namespace UniversityManager
                 student.Print();
             }
         }
+
+        public void SortStudentByAge()
+        {
+            IEnumerable<Student> sortedStudents = from student in _students orderby student.Age select student;
+            Console.WriteLine("Student sorted by Age:");
+            foreach (Student student in sortedStudents)
+            {
+                student.Print();
+            }
+        }
+
+        public void AllStudentsFromBeijingTech()
+        {
+            IEnumerable<Student> bjtStudent = from student in _students 
+                                                  join university in _universities on student.UniversityId equals university.Id
+                                                  where university.Name == "Beijing Tech"
+                                                  select student;
+            Console.WriteLine("All Beijing Tech Student :");
+            foreach(Student student in bjtStudent)
+            {
+                student.Print();
+            }
+        }
+
+        public void AllStudentsFromThatUni(int Id)
+        {
+            IEnumerable<Student> myStudents = from student in _students
+                                              join university in _universities on student.UniversityId equals university.Id
+                                              where university.Id == Id
+                                              select student;
+            Console.WriteLine("All Students from that University {0} :", Id);
+            foreach (Student student in myStudents)
+            {
+                student.Print();
+            }
+        }
     }
 }
