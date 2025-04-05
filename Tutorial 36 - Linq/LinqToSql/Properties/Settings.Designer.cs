@@ -33,5 +33,16 @@ namespace LinqToSql.Properties {
                 return ((string)(this["universityConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THE-TRD-PC\\SQLEXPRESS;Initial Catalog=university;Integrated Security=" +
+            "True;Encrypt=True;TrustServerCertificate=True")]
+        public string universityConnectionString1 {
+            get {
+                return ((string)(this["universityConnectionString1"]));
+            }
+        }
     }
 }
