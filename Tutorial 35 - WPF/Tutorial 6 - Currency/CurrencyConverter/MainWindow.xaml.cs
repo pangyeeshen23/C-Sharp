@@ -29,13 +29,13 @@ namespace CurrencyConverter
             dtCurrency.Columns.Add("Value");
             dtCurrency.Rows.Add("-- Select --", 0);
             dtCurrency.Rows.Add("INR", rates.INR);
-            dtCurrency.Rows.Add("USD", rates.JPY);
-            dtCurrency.Rows.Add("EUR", rates.USD);
-            dtCurrency.Rows.Add("INR", rates.NZD);
-            dtCurrency.Rows.Add("USD", rates.EUR);
-            dtCurrency.Rows.Add("EUR", rates.CAD);
-            dtCurrency.Rows.Add("INR", rates.ISK);
-            dtCurrency.Rows.Add("USD", rates.PHP);
+            dtCurrency.Rows.Add("JPY", rates.JPY);
+            dtCurrency.Rows.Add("USD", rates.USD);
+            dtCurrency.Rows.Add("NZD", rates.NZD);
+            dtCurrency.Rows.Add("EUR", rates.EUR);
+            dtCurrency.Rows.Add("CAD", rates.CAD);
+            dtCurrency.Rows.Add("ISK", rates.ISK);
+            dtCurrency.Rows.Add("PHP", rates.PHP);
             dtCurrency.Rows.Add("DKK", rates.DKK);
             dtCurrency.Rows.Add("CZK", rates.CZK);
 
@@ -80,9 +80,8 @@ namespace CurrencyConverter
             }
             else
             {
-                convertedValue = (double.Parse(cmbToCurrency.SelectedValue.ToString()) * 
-                    double.Parse(txtCurrency.Text)) / 
-                    double.Parse(cmbFromCurrency.SelectedValue.ToString());
+                convertedValue = double.Parse(txtCurrency.Text) / double.Parse(cmbFromCurrency.SelectedValue.ToString())
+                    * double.Parse(cmbToCurrency.SelectedValue.ToString());
                 lblCurrency.Content = cmbToCurrency.Text + " " + convertedValue.ToString("N2");
             }
         }
