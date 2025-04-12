@@ -1,7 +1,11 @@
 ﻿using System.Data;
+using System.Net;
+using System.Net.Http;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
+using CurrencyConverter.Response;
 
 namespace CurrencyConverter
 {
@@ -10,24 +14,30 @@ namespace CurrencyConverter
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
+
             InitializeComponent();
             BindCurrency();
         }
-
-        private void BindCurrency()
+        private async Task BindCurrency()
         {
+            Rate rates = await GetRates();
             DataTable dtCurrency = new DataTable();
             dtCurrency.Columns.Add("Text");
             dtCurrency.Columns.Add("Value");
             dtCurrency.Rows.Add("-- Select --", 0);
-            dtCurrency.Rows.Add("INR", 1);
-            dtCurrency.Rows.Add("USD", 75);
-            dtCurrency.Rows.Add("EUR", 85);
-            dtCurrency.Rows.Add("SAR", 20);
-            dtCurrency.Rows.Add("POUND", 5);
-            dtCurrency.Rows.Add("DEM", 43);
+            dtCurrency.Rows.Add("INR", rates.INR);
+            dtCurrency.Rows.Add("USD", rates.JPY);
+            dtCurrency.Rows.Add("EUR", rates.USD);
+            dtCurrency.Rows.Add("INR", rates.NZD);
+            dtCurrency.Rows.Add("USD", rates.EUR);
+            dtCurrency.Rows.Add("EUR", rates.CAD);
+            dtCurrency.Rows.Add("INR", rates.ISK);
+            dtCurrency.Rows.Add("USD", rates.PHP);
+            dtCurrency.Rows.Add("DKK", rates.DKK);
+            dtCurrency.Rows.Add("CZK", rates.CZK);
 
             cmbFromCurrency.ItemsSource = dtCurrency.DefaultView;
             cmbFromCurrency.DisplayMemberPath = "Text";
@@ -38,6 +48,26 @@ namespace CurrencyConverter
             cmbToCurrency.SelectedValuePath = "Value";
             cmbToCurrency.SelectedIndex = 0;
         }
+        private async Task<Rate> GetRates()
+        {
+            string link = "https://openexchangerates.org/api/latest.json?app_id=2151c9fcc0c940b086175f56fac18249";
+            try
+            {
+                using(HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(link);
+                    if (response.StatusCode != System.Net.HttpStatusCode.OK) throw new Exception("Error in API call");
+                    string json = await response.Content.ReadAsStringAsync();
+                    CurrencyResponse cresponse = JsonSerializer.Deserialize<CurrencyResponse>(json);
+                    return cresponse.Rates;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return null;
+        }
 
         private void onConvertBtnClick(object sender, RoutedEventArgs e)
         {
@@ -46,14 +76,14 @@ namespace CurrencyConverter
             if(cmbFromCurrency.Text == cmbToCurrency.Text)
             {
                 convertedValue = double.Parse(txtCurrency.Text);
-                lblCurrency.Content = cmbToCurrency.Text + " " + convertedValue.ToString("N3");
+                lblCurrency.Content = cmbToCurrency.Text + " " + convertedValue.ToString("N2");
             }
             else
             {
                 convertedValue = (double.Parse(cmbFromCurrency.SelectedValue.ToString()) * 
                     double.Parse(txtCurrency.Text)) / 
                     double.Parse(cmbToCurrency.SelectedValue.ToString());
-                lblCurrency.Content = cmbToCurrency.Text + " " + convertedValue.ToString("N3");
+                lblCurrency.Content = cmbToCurrency.Text + " " + convertedValue.ToString("N2");
             }
         }
 
