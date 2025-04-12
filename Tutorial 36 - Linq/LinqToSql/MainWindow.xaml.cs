@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Windows;
@@ -17,12 +18,24 @@ namespace LinqToSql
             string connectionString = ConfigurationManager
                 .ConnectionStrings["LinqToSql.Properties.Settings.universityConnectionString"].ConnectionString;
             dataContext = new LinqToSqlDataClassesDataContext(connectionString);
-            //InsertUniversities();
-            //InsertStudents();
-            //InsertLectures();
-            //InsertStudentLectureAssociations();
-            //GetUniversityOfToni();
-            GetLectureOfToni();
+            try
+            {
+                //InsertUniversities();
+                //InsertStudents();
+                //InsertLectures();
+                //InsertStudentLectureAssociations();
+                //GetUniversityOfToni();
+                //GetLectureOfToni();
+                //GetAllStudentsFromYale();
+                //GetAllUniveristiesWithFemale();
+                //GetAllLectureInBeijingTech();
+                //UpdateToni();
+                DeleteJame();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         public void InsertUniversities()
@@ -105,6 +118,50 @@ namespace LinqToSql
                                      where studentLecture.Select(studentLec => studentLec.LectureId).Contains(lecture.Id)
                                      select lecture).ToList();
             MainDataGrid.ItemsSource = lectures;
+        }
+
+        public void GetAllStudentsFromYale()
+        {
+            var yale = from student in dataContext.Students
+                       where student.University.Name.Equals("Yale")
+                       select student;
+            MainDataGrid.ItemsSource = yale;
+        }
+
+        public void GetAllUniveristiesWithFemale()
+        {
+            var universities = from student in dataContext.Students
+                               join university in dataContext.Universities
+                               on student.University equals university
+                               where student.Gender == "Female"
+                               select university;
+            MainDataGrid.ItemsSource = universities.Distinct();
+        }
+
+        public void GetAllLectureInBeijingTech()
+        {
+            List<Lecture> lectures = (from studentLecture in dataContext.StudentLectures
+                                      join lecture in dataContext.Lectures
+                                      on studentLecture.LectureId equals lecture.Id
+                                      where studentLecture.Student.University.Name.Equals("Beijing Tech")
+                                      select lecture).ToList();
+            MainDataGrid.ItemsSource = lectures;
+        }
+        
+        public void UpdateToni()
+        {
+            var tonie = dataContext.Students.FirstOrDefault(st => st.Name.Equals("Tonie Doe"));
+            tonie.Name = "Antonio";
+            dataContext.SubmitChanges();
+            MainDataGrid.ItemsSource = dataContext.Students;
+        }
+
+        public void DeleteJame()
+        {
+            Student jame = dataContext.Students.FirstOrDefault(st => st.Name.Equals("Jame"));
+            if (jame != null) dataContext.Students.DeleteOnSubmit(jame);
+            dataContext.SubmitChanges();
+            MainDataGrid.ItemsSource = dataContext.Students;
         }
     }
 }
