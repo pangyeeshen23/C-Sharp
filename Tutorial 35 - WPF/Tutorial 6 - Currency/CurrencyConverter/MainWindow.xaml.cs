@@ -80,9 +80,9 @@ namespace CurrencyConverter
             }
             else
             {
-                convertedValue = (double.Parse(cmbFromCurrency.SelectedValue.ToString()) * 
+                convertedValue = (double.Parse(cmbToCurrency.SelectedValue.ToString()) * 
                     double.Parse(txtCurrency.Text)) / 
-                    double.Parse(cmbToCurrency.SelectedValue.ToString());
+                    double.Parse(cmbFromCurrency.SelectedValue.ToString());
                 lblCurrency.Content = cmbToCurrency.Text + " " + convertedValue.ToString("N2");
             }
         }
