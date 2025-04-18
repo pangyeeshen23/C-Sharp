@@ -1,4 +1,6 @@
-﻿namespace ClarificationAndPercision
+﻿using ClarificationAndPercision.Models;
+
+namespace ClarificationAndPercision
 {
     internal class Program
     {
@@ -17,15 +19,6 @@
             customer.Id = 1;
             customer.Name = "John Doe";
         }
-    }
-
-    public class Customer
-    {
-        /// <summary>
-        /// Gets the Id of the customer
-        /// </summary>
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 
     /// <summary>
