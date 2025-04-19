@@ -1,4 +1,5 @@
-﻿using ClarificationAndPercision.Models;
+﻿using ClarificationAndPercision.Exception_Handling;
+using ClarificationAndPercision.Models;
 
 namespace ClarificationAndPercision
 {
@@ -18,6 +19,9 @@ namespace ClarificationAndPercision
             Customer customer = new Customer();
             customer.Id = 1;
             customer.Name = "John Doe";
+
+            ReadFile readfile = new ReadFile();
+            readfile.ReadFile("data.txt");
         }
     }
 
