@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClarificationAndPercision.Enum;
 
-namespace ClarificationAndPercision.Calculator
+namespace ClarificationAndPercision.Principles.Calculator
 {
     class DiscountCalculator
     {
@@ -19,8 +19,8 @@ namespace ClarificationAndPercision.Calculator
                 case CustomerTypeEnum.Regular:
                     discount = totalAmount > DISCOUNT_THRESHOLD ?  0.1 : 0.05;
                     break;
-                case CustomerTypeEnum.Premium:
-                    discount = totalAmount > DISCOUNT_THRESHOLD ? 0.1 : 0.05;
+                case CustomerTypeEnum.Premium: 
+                    discount = totalAmount > DISCOUNT_THRESHOLD ? 0.1 : 0.15;
                     break;
             }
             return discount;
