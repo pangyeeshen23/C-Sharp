@@ -50,7 +50,7 @@ namespace GenericsTutorial
             //Console.WriteLine(result);
 
 
-            IRepository<Stuff> productRepository = new StuffRepository();
+            IRepository<Stuff> stuffRepository = new StuffRepository();
         }
 
         class Book
