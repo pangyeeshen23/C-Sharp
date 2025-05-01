@@ -74,37 +74,67 @@ namespace ThreadsProject
 
             //Console.ReadLine();
 
-            Console.WriteLine("Main Thread Started");
-            Thread thread1 = new Thread(Tread1Function);
-            Thread thread2 = new Thread(Tread2Function);
-            thread1.Start();
-            thread2.Start();
+            //Console.WriteLine("Main Thread Started");
+            //Thread thread1 = new Thread(Tread1Function);
+            //Thread thread2 = new Thread(Tread2Function);
+            //thread1.Start();
+            //thread2.Start();
             //thread1.Join();
             //Console.WriteLine("Thread1Function Done");
             //thread2.Join();
             //Console.WriteLine("Thread2Function Done");
-            if (thread1.Join(1000))
+            //if (thread1.Join(1000))
+            //{
+            //    Console.WriteLine("Thread1Function done");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Thread1Function wasn't done in 1 sec");
+            //}
+            //thread2.Join();
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    if (thread1.IsAlive)
+            //    {
+            //        Console.WriteLine("Thread1 is still doing stuff");
+            //        Thread.Sleep(300);
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Thread1 completed");
+            //    }
+            //}
+            //Console.WriteLine("Main Thread Ended");
+
+            // thread 1
+
+            //Dead lock example
+            new Thread(() =>
             {
-                Console.WriteLine("Thread1Function done");
-            }
-            else
-            {
-                Console.WriteLine("Thread1Function wasn't done in 1 sec");
-            }
-            thread2.Join();
-            for (int i = 0; i < 10; i++)
-            {
-                if (thread1.IsAlive)
+                lock (typeof(int))
                 {
-                    Console.WriteLine("Thread1 is still doing stuff");
-                    Thread.Sleep(300);
+                    Thread.Sleep(1000);
+                    lock (typeof(float))
+                    {
+                        Console.WriteLine("Thread 1 got both locks");
+                    }
                 }
-                else
+            }).Start();
+
+             new Thread(() =>
+            {
+                // thread 2
+                lock (typeof(float))
                 {
-                    Console.WriteLine("Thread1 completed");
+                    Thread.Sleep(1000);
+                    lock (typeof(int))
+                    {
+                        Console.WriteLine("Thread 2 got both locks");
+                    }
                 }
-            }
-            Console.WriteLine("Main Thread Ended");
+            }).Start();
+
+            Console.WriteLine("Done");
         }
 
         public static void Tread1Function()
