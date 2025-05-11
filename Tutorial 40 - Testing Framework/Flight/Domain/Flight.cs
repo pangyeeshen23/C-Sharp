@@ -2,6 +2,10 @@
 {
     public class Flight
     {
+        private List<Booking> bookings = new();
+
+        public IEnumerable<Booking> booking => bookings;
+
         public int RemainingNumberOfSeats { get; set; }
 
         public Flight(int seatCapacity)
@@ -15,8 +19,8 @@
             {
                 throw new OverbookingException();
             }
-
             RemainingNumberOfSeats -= numberOfSeats;
+            bookings.Add(new Booking(email, numberOfSeats));
         }
     }
 }

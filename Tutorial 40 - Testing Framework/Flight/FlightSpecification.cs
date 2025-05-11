@@ -49,5 +49,13 @@ namespace Test
             flight.Book("yeess@gmail.com", numberOfSeats);
             flight.RemainingNumberOfSeats.Should().Be(remainingNumberOfSeats);
         }
+
+        [Fact]
+        public void Remembers_bookings()
+        {
+            Flight flight = new Flight(seatCapacity: 150);
+            flight.Book("a@b.com", 4);
+            flight.booking.Should().ContainEquivalentOf(new Booking("a@b.com", 4));
+        }
     }
 }
