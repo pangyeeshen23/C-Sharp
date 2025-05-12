@@ -57,5 +57,24 @@ namespace Test
             flight.Book("a@b.com", 4);
             flight.booking.Should().ContainEquivalentOf(new Booking("a@b.com", 4));
         }
+
+        [Fact]
+        public void Cancel_booking()
+        {
+            Flight flight = new Flight(seatCapacity: 150);
+            flight.Book("a@b.com", 4);
+            flight.CancelBooking("a@b.com");
+            flight.booking.Should().NotContainEquivalentOf(new Booking("a@b.com", 4));
+            flight.RemainingNumberOfSeats.Should().Be(150);
+        }
+
+        [Fact]
+        public void Cancel_booking_booking_not_found()
+        {
+            Flight flight = new Flight(seatCapacity: 150);
+            Assert.Throws<NullReferenceException>(
+                () => flight.CancelBooking("v2.com")
+            );
+        }
     }
 }

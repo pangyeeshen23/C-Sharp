@@ -20,7 +20,15 @@
                 throw new OverbookingException();
             }
             RemainingNumberOfSeats -= numberOfSeats;
-            bookings.Add(new Booking(email, numberOfSeats));
+            Booking booking = new Booking(email, numberOfSeats);
+            bookings.Add(booking);
+        }
+
+        public void CancelBooking(string email)
+        {
+            Booking booking = bookings.FirstOrDefault(b => b.Email == email) ?? throw new NullReferenceException();
+            bookings.Remove(booking);
+            RemainingNumberOfSeats += booking.NumberOfSeats;   
         }
     }
 }
