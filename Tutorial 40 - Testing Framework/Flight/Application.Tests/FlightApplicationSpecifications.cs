@@ -1,57 +1,47 @@
 using FluentAssertions;
+using Data;
+using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Tests
 {
     public class FlightApplicationSpecifications
     {
-        [Fact]
-        public void Books_flights()
+        readonly Entities _entities = new Entities(new DbContextOptionsBuilder<Entities>().UseInMemoryDatabase("Flights").Options);
+        readonly BookingService _bookingService;
+
+        public FlightApplicationSpecifications()
         {
-            BookingService bookingService = new BookingService();
-            bookingService.Book(new BookDto(Guid.NewGuid(), "passenger@gmail.com", 4));
-            bookingService.FindBookings().Should().ContainEquivalentOf(
-                new BookingRm("passenger@gmail.com", 4)    
+            _bookingService = new BookingService(_entities);
+        }
+
+        [Theory]
+        [InlineData("M@m.com", 2)]
+        [InlineData("a@a.com", 2)]
+        public void Books_flights_should_remember_booking(string passengerEmail, int numebrOfSeats)
+        {
+            Flight flight = new Flight(3);
+            _entities.Flights.Add(flight);
+            _bookingService.Book(new BookDto(flight.Id, passengerEmail, numebrOfSeats));
+            _bookingService.FindBookings(flight.Id).Should().ContainEquivalentOf(
+                new BookingRm(passengerEmail, numebrOfSeats)
             );
         }
-    }
 
-    public class BookingService
-    {
-        public void Book(BookDto bookDto)
+        [Theory]
+        [InlineData(3)]
+        public void Cancels_booking_should_free_up_seats(int initialCapacity)
         {
-
+            Flight flight = new Flight(initialCapacity);
+            _entities.Flights.Add(flight);
+            _bookingService.Book(new BookDto(flightId: flight.Id, passengerEmail: "m@m.com", numberOfSeats: 2)); 
+            _bookingService.CancelBooking(new CancelBookingDto(
+                    flightId: flight.Id, 
+                    passengerEmail: "m@m.com", 
+                    numberOfSeats: 2
+                )
+            );
+            _bookingService.GetRemainingNumberOfSeatsFor(flight.Id).Should().Be(initialCapacity);
         }
-
-        public IEnumerable<BookingRm> FindBookings()
-        {
-            return new[]
-            {
-                new BookingRm("passenger@gmail.com", 4)
-            };
-        }
-    }
-
-    public class BookDto
-    {
-        public BookDto(Guid flightId, string passengerEmail, int numberOfSeats)
-        {
-            
-        }
-    }
-
-    // Rm - stands for "Read Model"
-    public class BookingRm
-    {
-
-        public string PassengerEmail { get; set; }
-        public int NumberOfSeats { get; set; }
-
-        public BookingRm(string passengerEmail, int numberOfSeats)
-        {
-            PassengerEmail = passengerEmail;
-            NumberOfSeats = numberOfSeats;
-        }
-
-
     }
 }

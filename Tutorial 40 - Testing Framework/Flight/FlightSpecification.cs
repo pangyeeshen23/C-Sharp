@@ -55,7 +55,7 @@ namespace Test
         {
             Flight flight = new Flight(seatCapacity: 150);
             flight.Book("a@b.com", 4);
-            flight.booking.Should().ContainEquivalentOf(new Booking("a@b.com", 4));
+            flight.Bookings.Should().ContainEquivalentOf(new Booking("a@b.com", 4));
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Test
             Flight flight = new Flight(seatCapacity: 150);
             flight.Book("a@b.com", 4);
             flight.CancelBooking("a@b.com");
-            flight.booking.Should().NotContainEquivalentOf(new Booking("a@b.com", 4));
+            flight.Bookings.Should().NotContainEquivalentOf(new Booking("a@b.com", 4));
             flight.RemainingNumberOfSeats.Should().Be(150);
         }
 

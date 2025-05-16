@@ -4,9 +4,17 @@
     {
         private List<Booking> bookings = new();
 
-        public IEnumerable<Booking> booking => bookings;
+        public IEnumerable<Booking> Bookings => bookings;
 
         public int RemainingNumberOfSeats { get; set; }
+
+        public Guid Id { get; }
+
+        [Obsolete("Needed by EF")]
+        public Flight()
+        {
+            
+        }
 
         public Flight(int seatCapacity)
         {
