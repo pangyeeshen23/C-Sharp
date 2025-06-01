@@ -31,7 +31,6 @@ public class BallMovement : MonoBehaviour
         Rigidbody2D rb = this.gameObject.GetComponent<Rigidbody2D>();
         rb.linearVelocity = direction * speed;
         Debug.Log("Ball moved with speed: " + rb.linearVelocity.magnitude);
-        IncreaseHitCounter();
     }
 
     public void IncreaseHitCounter()
