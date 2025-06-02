@@ -28,10 +28,12 @@ public class CollisionController : MonoBehaviour
         else if (collision.gameObject.name == "Player1Goal")
         {
             this.scoreController.IncreaseScore("Player2");
+            StartCoroutine(this.ballMovement.StartBall(true));
         }
         else if (collision.gameObject.name == "Player2Goal")
         {
             this.scoreController.IncreaseScore("Player1");
+            StartCoroutine(this.ballMovement.StartBall(false));
         }
     }
 }

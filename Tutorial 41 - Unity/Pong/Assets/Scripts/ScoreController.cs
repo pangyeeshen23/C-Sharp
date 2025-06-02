@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreController : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class ScoreController : MonoBehaviour
     {
         if(this.player1Score >= this.goalToWin || this.player2Score >= this.goalToWin)
         {
-            Debug.Log("Game Over");
+            SceneManager.LoadScene("GameOver");
         }
     }
 
@@ -32,5 +33,6 @@ public class ScoreController : MonoBehaviour
     {
         if (playerName == "Player1") player1Score++;
         else if (playerName == "Player2") player2Score++;
+
     }
 }

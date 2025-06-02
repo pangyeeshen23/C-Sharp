@@ -14,14 +14,28 @@ public class BallMovement : MonoBehaviour
         StartCoroutine(StartBall());
     }
 
+
     public IEnumerator StartBall(bool isStartingPlayer1 = true)
     {
         this.hitCounter = 0;
+        this.PositionBall(isStartingPlayer1);
         yield return new WaitForSeconds(2);
         if(isStartingPlayer1)
             this.MoveBall(new Vector2(-1, 0));
         else 
             this.MoveBall(new Vector2(1, 0));
+    }
+    void PositionBall(bool isStartingPlayer1)
+    {
+        this.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0, 0);
+        if (isStartingPlayer1)
+        {
+            this.gameObject.transform.localPosition = new Vector2(-100, 0);
+        }
+        else
+        {
+            this.gameObject.transform.localPosition = new Vector2(100, 0);
+        }
     }
 
     public void MoveBall(Vector2 direction)
