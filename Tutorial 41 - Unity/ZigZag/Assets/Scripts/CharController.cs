@@ -26,6 +26,15 @@ public class CharController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Crystal")
+        {
+            Destroy(other.gameObject);
+            gameManager.IncreaseScore();
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -44,6 +53,7 @@ public class CharController : MonoBehaviour
 
     private void SwitchDirection()
     {
+        if (!gameManager.gameStarted) return;
         walkingRight = !walkingRight;
         if (walkingRight) rb.transform.rotation = Quaternion.Euler(0, 45, 0);
         else rb.transform.rotation = Quaternion.Euler(0, -45, 0);
