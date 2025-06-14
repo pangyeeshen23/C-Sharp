@@ -8,6 +8,7 @@ public class CharController : MonoBehaviour
     private bool walkingRight = true;
     private Animator anim;
     private GameManager gameManager;
+    public GameObject crystalEffect;
 
     void Awake()
     {
@@ -30,8 +31,10 @@ public class CharController : MonoBehaviour
     {
         if(other.tag == "Crystal")
         {
-            Destroy(other.gameObject);
             gameManager.IncreaseScore();
+            GameObject g = Instantiate(crystalEffect, rayStart.transform.position, Quaternion.identity);
+            Destroy(g, 2);
+            Destroy(other.gameObject);
         }
     }
 

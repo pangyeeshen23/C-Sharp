@@ -7,10 +7,17 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     public int score;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
+
+    private void Awake()
+    {
+        highScoreText.text =  "Best: " + GetHighScore().ToString();
+    }
 
     public void StartGame()
     {
         gameStarted = true;
+        FindFirstObjectByType<Road>().StartBuilding();
     }
 
     private void Update()
@@ -27,5 +34,15 @@ public class GameManager : MonoBehaviour
     {
         score++;
         scoreText.text = score.ToString();
+        if(score > GetHighScore())
+        {
+            PlayerPrefs.SetInt("HighScore", score);
+            highScoreText.text = "Best: " + score.ToString();
+        }
+    }
+
+    public int GetHighScore()
+    {
+        return PlayerPrefs.GetInt("HighScore");
     }
 }
