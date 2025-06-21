@@ -930,6 +930,8 @@ MonoBehaviour:
   objsToSpawn:
   - {fileID: 3330794616628575277, guid: 9466cc84626b5634fbebf5e8051fbf57, type: 3}
   - {fileID: 2093949418906338563, guid: 0aca8d610eba59648ab559bd921cb5b5, type: 3}
+  - {fileID: 4702766720942537004, guid: af52c1ae39c76064e94b044584c463e8, type: 3}
+  - {fileID: 4327560807869033652, guid: 71fd2eb717ccd5341af1e435e5bdfd79, type: 3}
   minWait: 0.3
   maxWait: 1
   minForce: 12
