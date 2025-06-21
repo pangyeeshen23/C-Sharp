@@ -1,16 +1,36 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Score Elements")]
+    public int score;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScoreText;
+    [Header("GameOver")]
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI gameOverPanelScoreText;
+
+    private void Awake()
     {
-        
+        gameOverPanel.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseScore(int points)
     {
-        
+        score += points;
+        int highScore = PlayerPrefs.GetInt("HighScore", 0);
+        if (score > highScore) PlayerPrefs.SetInt("HighScore", score);
+        scoreText.text = score.ToString();
+        highScoreText.text = "Best: " + score.ToString();
+    }
+
+    public void OnBombHit()
+    {
+        Time.timeScale = 0;
+        gameOverPanelScoreText.text = "Score: " + score.ToString();
+        gameOverPanel.SetActive(true);
+        Debug.Log("Bomb Hit");
     }
 }

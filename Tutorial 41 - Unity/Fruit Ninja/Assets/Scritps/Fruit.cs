@@ -14,6 +14,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             int explosiveForce = Random.Range(100, 1000);
             rb.AddExplosionForce(explosiveForce, transform.position, 5f);
         }
+        FindFirstObjectByType<GameManager>().IncreaseScore(3);
         Destroy(inst.gameObject, 5f);
         Destroy(gameObject);
     }
