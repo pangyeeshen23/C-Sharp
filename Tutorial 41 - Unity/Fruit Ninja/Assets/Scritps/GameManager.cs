@@ -2,6 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEditor.Advertisements;
+
 public class GameManager : MonoBehaviour
 {
     [Header("Score Elements")]
