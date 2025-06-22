@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slicedFruitPrefab: {fileID: 8623873133606235919, guid: 1e024a1a10c8e434e8910c3c168d8570, type: 3}
+  slashAudio: {fileID: 0}

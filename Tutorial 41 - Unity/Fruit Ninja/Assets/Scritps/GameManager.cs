@@ -15,10 +15,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverPanelScoreText;
     public TextMeshProUGUI gameOverPanelHighScoreText;
 
+    [Header("Sounds")]
+    public AudioClip[] sliceSounds;
+    private AudioSource audioSource;
+
     private int highScore;
 
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         gameOverPanel.SetActive(false);
         highScore = PlayerPrefs.GetInt("HighScore");
         highScoreText.text = "Best: " + highScore.ToString();
@@ -33,6 +38,12 @@ public class GameManager : MonoBehaviour
             highScoreText.text = "Best: " + score.ToString();
         }
         scoreText.text = score.ToString();
+    }
+
+    public void PlaySlashAudio()
+    {
+        AudioClip randSounds = sliceSounds[Random.Range(0, sliceSounds.Length)];
+        audioSource.PlayOneShot(randSounds);
     }
 
     public void OnBombHit()

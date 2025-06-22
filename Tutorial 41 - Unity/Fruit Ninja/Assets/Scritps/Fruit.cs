@@ -24,5 +24,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Blade blade = collision.GetComponent<Blade>();
         if (!blade) return;
         CreateSlicedFruit();
+        FindFirstObjectByType<GameManager>().PlaySlashAudio();
     }
 }
