@@ -20,6 +20,35 @@ namespace Operators
             int sumRef = 0;
             AdditionRef(10, 25, ref sumRef);
             Console.WriteLine(sumRef);
+
+            // is Operator
+            bool isBools = true;
+            if(isBools is bool) Console.WriteLine("IsBoolean");
+
+            // as Operator
+            object str = "Hello";
+            object obj = 12;
+
+            string message = str as string;
+            string number = obj as string;
+
+            if (message != null)
+            {
+                Console.WriteLine(message);
+            }
+            else
+            {
+                Console.WriteLine("str is not a string");
+            }
+
+            if (number != null)
+            {
+                Console.WriteLine(number);
+            }
+            else
+            {
+                Console.WriteLine("obj is not a string");
+            }
         }
 
         public static void AdditionIn(int a, int b, in int sum)
